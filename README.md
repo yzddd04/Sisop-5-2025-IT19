@@ -1,4 +1,4 @@
-# Sisop-5-2025-ITAsisten
+# Sisop-5-2025-IT-Template
 
 ## Kelompok
 
@@ -9,7 +9,7 @@ Rafi' Afnaan Fathurrahman | 5027231040
 
 ## Daftar Isi
 
-- [Sisop-5-2025-ITAsisten](#sisop-5-2025-itasisten)
+- [Sisop-5-2025-ITAsisten](#sisop-5-2025-it-template)
   - [Kelompok](#kelompok)
   - [Daftar Isi](#daftar-isi)
   - [Soal](#soal)
@@ -170,7 +170,10 @@ Pada suatu hari, anda merasa sangat lelah dari segala macam praktikum yang sudah
 
 ### Video Demonstrasi
 
-<video src="assets/demo.mp4" width="320" height="240" controls></video>
+[Akses Video dalam Assets](./assets/demo.mp4)
+
+https://github.com/user-attachments/assets/1cfa66b1-b2f5-4e3e-a4b2-ec8b012f6fbb
+
 
 ## Laporan
 
