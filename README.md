@@ -9,16 +9,15 @@ Rafi' Afnaan Fathurrahman | 5027231040
 
 ## Daftar Isi
 
-- [Sisop-5-2025-ITAsisten](#sisop-5-2025-it-template)
-  - [Kelompok](#kelompok)
-  - [Daftar Isi](#daftar-isi)
-  - [Soal](#soal)
-  - [Petunjuk Soal](#petunjuk-soal)
-    - [Source](#source)
-    - [Headers](#headers)
-    - [Makefile](#makefile)
-    - [Video Demonstrasi](#video-demonstrasi)
-  - [Laporan](#laporan)
+- [Kelompok](#kelompok)
+- [Daftar Isi](#daftar-isi)
+- [Soal](#soal)
+- [Petunjuk Soal](#petunjuk-soal)
+  - [Source](#source)
+  - [Headers](#headers)
+  - [Makefile](#makefile)
+  - [Video Demonstrasi](#video-demonstrasi)
+- [Laporan](#laporan)
 
 ## Soal
 
