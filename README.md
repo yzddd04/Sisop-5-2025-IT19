@@ -2,10 +2,11 @@
 
 ## Kelompok
 
-Nama | NRP
---- | ---
-Amoes Noland | 5027231028
-Rafi' Afnaan Fathurrahman | 5027231040
+No | Nama | NRP
+--- | --- | ---
+1 |	Ahmad Yazid Arifuddin	| 5027241040
+2	| Muhammad Ziddan Habibi |	5027241122
+3	| Andi Naufal Zaki	| 5027241059
 
 ## Daftar Isi
 
