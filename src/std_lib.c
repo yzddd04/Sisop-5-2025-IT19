@@ -2,45 +2,51 @@
 
 int div(int a, int b)
 {
-  if (b == 0) return 0; 
-  
-  bool negative = false;
-  if ((a < 0 && b > 0) || (a > 0 && b < 0)) {
-    negative = true;
+  // Implementasi pembagian
+  // NOTE: BISA ANGKA NEGATIF
+  int res = 0;
+  int sign = 1;
+
+  if (a < 0) {
+    a = -a;
+    sign = -sign;
   }
-  
-  // Make both numbers positive
-  if (a < 0) a = -a;
-  if (b < 0) b = -b;
-  
-  int result = 0;
+  if (b < 0) {
+    b = -b;
+    sign = -sign;
+  }
+
   while (a >= b) {
     a -= b;
-    result++;
+    res++;
   }
-  
-  return negative ? -result : result;
+
+  return res * sign;
 }
 
 int mod(int a, int b)
 {
-  if (b == 0) return 0; // Handle modulo by zero
-  
-  bool negative = (a < 0);
-  
-  // Make both numbers positive for calculation
-  if (a < 0) a = -a;
-  if (b < 0) b = -b;
+  // Implementasi modulus
+  // NOTE: BISA ANGKA NEGATIF
+  int sign = 1;
+  if (a < 0) {
+    a = -a;
+    sign = -sign;
+  }
+  if (b < 0) {
+    b = -b;
+  }
   
   while (a >= b) {
     a -= b;
   }
   
-  return negative ? -a : a;
+  return a * sign;
 }
 
 bool strcmp(char *str1, char *str2)
 {
+  // Implementasi perbandingan string
   int i = 0;
   while (str1[i] != '\0' && str2[i] != '\0') {
     if (str1[i] != str2[i]) {
@@ -48,11 +54,12 @@ bool strcmp(char *str1, char *str2)
     }
     i++;
   }
-  return str1[i] == str2[i]; // Both should be '\0' if equal
+  return str1[i] == '\0' && str2[i] == '\0';
 }
 
 void strcpy(char *dst, char *src)
 {
+  // Implementasi penyalinan string
   int i = 0;
   while (src[i] != '\0') {
     dst[i] = src[i];
@@ -63,6 +70,7 @@ void strcpy(char *dst, char *src)
 
 void clear(byte *buf, unsigned int size)
 {
+  // Implementasi pembersihan buffer
   unsigned int i;
   for (i = 0; i < size; i++) {
     buf[i] = 0;
@@ -71,69 +79,64 @@ void clear(byte *buf, unsigned int size)
 
 void atoi(char *str, int *num)
 {
+  // Implementasi konversi string ke integer
+  // NOTE: BISA ANGKA NEGATIF
   *num = 0;
+  int sign = 1;
   int i = 0;
-  bool negative = false;
-  
-  // Check for negative sign
+
   if (str[0] == '-') {
-    negative = true;
-    i = 1;
-  } else if (str[0] == '+') {
-    i = 1;
+    sign = -1;
+    i++;
   }
-  
-  // Convert digits
-  while (str[i] != '\0' && str[i] >= '0' && str[i] <= '9') {
+
+  while (str[i] != '\0') {
     *num = *num * 10 + (str[i] - '0');
     i++;
   }
-  
-  if (negative) {
-    *num = -*num;
-  }
+
+  *num *= sign;
 }
 
 void itoa(int num, char *str)
 {
+  // Implementasi konversi integer ke string
+  // NOTE: BISA ANGKA NEGATIF
   int i = 0;
-  bool negative = false;
-  
-  // Handle negative numbers
-  if (num < 0) {
-    negative = true;
-    num = -num;
-  }
-  
-  // Handle zero case
+  int sign = 0;
+  int temp;
+
   if (num == 0) {
     str[0] = '0';
     str[1] = '\0';
     return;
   }
-  
-  // Convert digits (in reverse order)
-  while (num > 0) {
-    str[i] = (num % 10) + '0';
-    num = num / 10;
-    i++;
+
+  if (num < 0) {
+    sign = 1;
+    num = -num;
   }
-  
-  // Add negative sign if needed
-  if (negative) {
-    str[i] = '-';
-    i++;
+
+  while (num != 0) {
+    temp = num % 10;
+    str[i++] = temp + '0';
+    num /= 10;
   }
-  
+
+  if (sign) {
+    str[i++] = '-';
+  }
+
   str[i] = '\0';
-  
+
   // Reverse the string
   int start = 0;
   int end = i - 1;
+  char swap;
   while (start < end) {
-    char temp = str[start];
+    swap = str[start];
     str[start] = str[end];
-    str[end] = temp;
+    str[end] = swap;
     start++;
     end--;
   }
