@@ -180,7 +180,7 @@ https://github.com/user-attachments/assets/1cfa66b1-b2f5-4e3e-a4b2-ec8b012f6fbb
 
 ## Laporan
 
-- Jalankan `make` di terminal
+- Jalankan `make build` di terminal
 - Kemudian buka bocsh 2.8
 - Load file bochsrc.txt
 - Start
