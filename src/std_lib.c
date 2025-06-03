@@ -36,11 +36,11 @@ int mod(int a, int b)
   if (b < 0) {
     b = -b;
   }
-  
+
   while (a >= b) {
     a -= b;
   }
-  
+
   return a * sign;
 }
 
