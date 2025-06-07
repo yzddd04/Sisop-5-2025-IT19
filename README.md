@@ -188,14 +188,4 @@ https://github.com/user-attachments/assets/1cfa66b1-b2f5-4e3e-a4b2-ec8b012f6fbb
 
 ## Dokumentasi Kode
 
-1. ![image](https://github.com/user-attachments/assets/daf94863-2af0-4e95-b473-008dec3f9c11)
-2. ![image](https://github.com/user-attachments/assets/2ea82506-c2ce-44c8-a0ef-1033ff8f7ed1)
-3. ![image](https://github.com/user-attachments/assets/5402ff0a-0e10-4c2a-8eed-f60b863912d8)
-4.
-  - ![image](https://github.com/user-attachments/assets/fd4ec199-5ce0-4ac0-813b-be41c3af79b3)
-  - ![image](https://github.com/user-attachments/assets/d5ef6a5a-2633-4674-a694-c67a746d9056)
-  - ![image](https://github.com/user-attachments/assets/b8e7d2a7-a65c-4355-a195-e700f790a2c1)
-  - ![image](https://github.com/user-attachments/assets/83c7186f-7557-4706-b285-48bf0be56bf6)
-  - ![image](https://github.com/user-attachments/assets/2c05cfed-27d2-48c2-bd7a-ea2478cb0448)
-5. ![image](https://github.com/user-attachments/assets/cfd68dc8-00e1-4cbe-a81d-9b7c6d057d26)
-6. ![image](https://github.com/user-attachments/assets/c4fc9920-b518-4069-851b-c2527529a1af)
+
