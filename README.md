@@ -18,6 +18,7 @@ No | Nama | NRP
   - [Headers](#headers)
   - [Makefile](#makefile)
   - [Video Demonstrasi](#video-demonstrasi)
+- [Dokumentasi](#dokumentasi)
 - [Laporan](#laporan)
 
 ## Soal
@@ -176,6 +177,22 @@ Pada suatu hari, anda merasa sangat lelah dari segala macam praktikum yang sudah
 [Akses Video dalam Assets](./assets/demo.mp4)
 
 https://github.com/user-attachments/assets/1cfa66b1-b2f5-4e3e-a4b2-ec8b012f6fbb
+
+## Dokumentasi
+![image](https://github.com/user-attachments/assets/fe98f598-bab1-4ad1-b861-cb8094b06a80)
+![image](https://github.com/user-attachments/assets/0a8c9759-9837-4837-8931-cd3987d3118f)
+![image](https://github.com/user-attachments/assets/cb38eb26-07cf-47d2-89b6-afd4f0be0722)
+![image](https://github.com/user-attachments/assets/ce23e718-ee65-4a30-821c-7afaba928614)
+![image](https://github.com/user-attachments/assets/15b46909-0b73-4acf-98ee-9a67cb4aa911)
+![image](https://github.com/user-attachments/assets/db7768c0-adb6-4dec-9104-1e97d881754c)
+![image](https://github.com/user-attachments/assets/685d0420-3770-4bcb-953e-c0b143fe4b94)
+
+![image](https://github.com/user-attachments/assets/c04866f7-db81-42b5-a290-cc063ac845ce)
+![image](https://github.com/user-attachments/assets/2bb6be0c-7464-4693-ae60-92ce01fbde8c)
+
+
+
+
 
 
 ## Laporan
@@ -1256,7 +1273,15 @@ void launchShell() {
     initializeCommands();
     shellContext.sessionId = getBiosTick() & 0xFFFF;
     
-    outputText("Welcome to EorzeOS Enhanced Shell v2.0!\r\n");
+    outputText("Welcome to EorzeOS!\r\n");
+    outputText("  _____ _______ __  ___  \r\n");
+    outputText(" |_   _|__   __/_ |/ _ \\ \r\n");
+    outputText("   | |    | |   | | (_) |\r\n");
+    outputText("   | |    | |   | |\\__, |\r\n");
+    outputText("  _| |_   | |   | |  / / \r\n");
+    outputText(" |_____|  |_|   |_| /_/  \r\n");
+    outputText("                          \r\n");
+    outputText("                          \r\n");
     
     while (1) {
         outputText(shellContext.user);
