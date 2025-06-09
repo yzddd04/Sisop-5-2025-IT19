@@ -188,4 +188,217 @@ https://github.com/user-attachments/assets/1cfa66b1-b2f5-4e3e-a4b2-ec8b012f6fbb
 
 ## Dokumentasi Kode
 
+#### Kernel.h
+```c
+#ifndef __KERNEL_H__
+#define __KERNEL_H__
+
+#include "std_type.h"
+
+extern void putInMemory(int segment, int address, char character);
+extern int interrupt(int number, int AX, int BX, int CX, int DX);
+unsigned int getBiosTick();
+
+void printString(char* str);
+void readString(char* buf);
+void clearScreen();
+
+#endif // __KERNEL_H__
+```
+File `kernel.h` adalah **header file utama** dalam proyek sistem operasi sederhana seperti *EorzeOS*. Fungsinya adalah sebagai **deklarasi fungsi-fungsi dasar kernel** yang akan digunakan di berbagai file `.c` atau `.asm`.
+
+Secara umum, file ini berisi *deklarasi antarmuka* untuk:
+
+1. **Menampilkan teks ke layar** (`printString`, `putInMemory`)
+2. **Membaca input dari keyboard** (`readString`)
+3. **Membersihkan layar** (`clearScreen`)
+4. **Mengakses waktu dari BIOS** (`getBiosTick`)
+5. **Memanggil interrupt BIOS dengan parameter register** (`interrupt`)
+
+File ini **tidak berisi implementasi**, melainkan hanya memberitahu compiler bahwa fungsi-fungsi tersebut *ada dan akan didefinisikan di tempat lain*. Dengan begitu, file lain seperti `kernel.c` atau `shell.c` bisa menggunakan fungsi-fungsi ini tanpa error saat kompilasi.
+
+Intinya:
+`kernel.h` berperan sebagai **pintu masuk fungsi-fungsi dasar kernel** — agar modul lain bisa mencetak ke layar, menerima input, mengatur layar, dan memanggil layanan BIOS dengan mudah.
+
+#### shell.h
+
+```c
+#ifndef __SHELL_H__
+#define __SHELL_H__
+
+#include "std_type.h"
+
+void shell();
+void parseCommand(char *buf, char *cmd, char arg[2][64]);
+void executeCommand(char *buf);
+
+#endif // __SHELL_H__
+```
+
+File `shell.h` adalah **header file** untuk modul *shell* dalam sistem operasi buatanmu (seperti EorzeOS). Fungsinya adalah untuk **mendeklarasikan fungsi-fungsi utama yang berkaitan dengan shell**, yaitu antarmuka tempat pengguna bisa mengetik perintah.
+
+### Inti dari fungsinya:
+
+` shell.h` digunakan untuk memberitahu compiler bahwa ada tiga fungsi penting yang akan diimplementasikan di file lain (kemungkinan di `shell.c`), yaitu:
+
+1. **`shell()`**
+   Fungsi utama yang menjalankan *shell loop*. Biasanya ini akan mencetak prompt, menerima input dari pengguna, memprosesnya, dan menjalankan perintah yang sesuai. Ini inti dari bagaimana pengguna berinteraksi dengan OS lewat teks.
+
+2. **`parseCommand(char *buf, char *cmd, char arg[2][64])`**
+   Memecah string input pengguna menjadi *perintah utama* (`cmd`) dan *argumen* (`arg`). Misalnya, jika pengguna mengetik:
+
+   ```
+   copy file1.txt file2.txt
+   ```
+
+   Maka:
+
+   * `cmd = "copy"`
+   * `arg[0] = "file1.txt"`
+   * `arg[1] = "file2.txt"`
+
+3. **`executeCommand(char *buf)`**
+   Menjalankan perintah berdasarkan input. Fungsi ini akan memanggil fungsi lain sesuai perintah yang diminta pengguna. Misalnya, jika input `"clear"`, maka fungsi `clearScreen()` akan dipanggil.
+
+---
+
+### Kesimpulan
+
+📌 **`shell.h` adalah antarmuka untuk shell command-line buatanmu**.
+Fungsi-fungsinya mendukung proses:
+
+* Menampilkan prompt dan membaca perintah (`shell`)
+* Memecah input jadi perintah dan argumen (`parseCommand`)
+* Menjalankan perintah dari input pengguna (`executeCommand`)
+
+File ini sangat penting agar file lain dalam sistem tahu cara memanggil fungsi-fungsi shell tanpa perlu tahu detail implementasinya.
+
+#### std_lib.h
+
+```c
+#ifndef __STD_LIB_H__
+#define __STD_LIB_H__
+
+#include "std_type.h"
+
+int div(int a, int b);
+int mod(int a, int b);
+
+bool strcmp(char *str1, char *str2);
+void strcpy(char *dst, char *src);
+void clear(byte *buf, unsigned int size);
+
+void atoi(char *str, int *num);
+void itoa(int num, char *str);
+
+#endif // __STD_LIB_H__
+```
+File `std_lib.h` adalah **header file** untuk pustaka fungsi standar (standard library) buatan sendiri dalam sistem operasi sederhana seperti *EorzeOS*.
+
+Fungsinya adalah menyediakan **fungsi-fungsi dasar manipulasi angka, string, dan memori** yang biasanya tersedia di C standard library (`<string.h>`, `<stdlib.h>`, dll.), tetapi karena OS ini berjalan tanpa sistem operasi lain, semua harus dibuat sendiri dari nol.
+
+---
+
+### Fungsi-fungsi yang dideklarasikan:
+
+1. **`int div(int a, int b)`**
+   Fungsi pembagian: membagi `a` dengan `b`, mengembalikan hasil bagi bulatnya.
+
+2. **`int mod(int a, int b)`**
+   Fungsi modulo: mengembalikan sisa pembagian `a` dengan `b`.
+
+---
+
+3. **`bool strcmp(char *str1, char *str2)`**
+   Membandingkan dua string. Mengembalikan `true` jika isi `str1` sama dengan `str2`.
+
+4. **`void strcpy(char *dst, char *src)`**
+   Menyalin isi string `src` ke `dst`.
+
+5. **`void clear(byte *buf, unsigned int size)`**
+   Mengisi array `buf` dengan nilai nol sebanyak `size` byte. Mirip dengan `memset(buf, 0, size)` di C standar.
+
+---
+
+6. **`void atoi(char *str, int *num)`**
+   Mengubah string berisi angka (misalnya `"123"`) menjadi integer dan disimpan di `*num`. Mirip `atoi()` pada C.
+
+7. **`void itoa(int num, char *str)`**
+   Mengubah integer (`num`) menjadi string yang disimpan di `str`. Mirip `itoa()` pada C.
+
+---
+
+### Kesimpulan
+
+📌 **`std_lib.h` adalah header untuk pustaka fungsi dasar OS kamu**, yang mencakup:
+
+* Aritmetika sederhana (`div`, `mod`)
+* Operasi string (`strcmp`, `strcpy`)
+* Operasi memori (`clear`)
+* Konversi antara string dan integer (`atoi`, `itoa`)
+
+File ini memungkinkan kamu menulis program dan shell dengan kemampuan dasar **tanpa bergantung pada C library bawaan**, karena OS kamu berdiri sendiri dan tidak menjalankan libc standar.
+
+#### std_type.h
+
+```c
+#ifndef __STD_TYPE_H__
+#define __STD_TYPE_H__
+
+typedef unsigned char byte;
+
+typedef char bool;
+#define true 1
+#define false 0
+
+#endif // __STD_YPE_H__
+```
+
+File `std_type.h` adalah **header file untuk definisi tipe data dasar** dalam sistem operasi buatanmu (seperti *EorzeOS*).
+
+Karena kamu tidak menggunakan library standar C (seperti `stdint.h` atau `stdbool.h`), file ini membuat **alias tipe dan nilai boolean** yang akan digunakan di seluruh proyek.
+
+---
+
+### Penjelasan isi:
+
+```c
+typedef unsigned char byte;
+```
+
+Membuat alias `byte` untuk `unsigned char` (8-bit).
+Digunakan untuk menyatakan data 1 byte, biasanya di memori atau buffer.
+
+---
+
+```c
+typedef char bool;
+#define true 1
+#define false 0
+```
+
+Karena C tidak memiliki tipe boolean bawaan secara eksplisit (sebelum C99), kamu mendefinisikan sendiri:
+
+* `bool` adalah alias dari `char` (cukup untuk menyimpan 0 atau 1).
+* `true` diset ke `1`
+* `false` diset ke `0`
+
+---
+
+### Kesimpulan
+
+📌 **`std_type.h` adalah definisi dasar tipe yang dibutuhkan oleh seluruh proyek OS-mu**, supaya bisa:
+
+* Menyatakan boolean (`true`, `false`, `bool`)
+* Menyatakan byte (`byte`)
+
+File ini penting untuk menjaga konsistensi dan kemudahan penulisan tipe data dalam kode kernel dan library kamu.
+
+
+
+
+
+
+
+
 
