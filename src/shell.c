@@ -196,7 +196,16 @@ void launchShell() {
     initializeCommands();
     shellContext.sessionId = getBiosTick() & 0xFFFF;
     
-    outputText("Welcome to EorzeOS Enhanced Shell v2.0!\r\n");
+    outputText("Welcome to EorzeOS!\r\n");
+    outputText("  _____ _______ __  ___  \r\n");
+    outputText(" |_   _|__   __/_ |/ _ \\ \r\n");
+    outputText("   | |    | |   | | (_) |\r\n");
+    outputText("   | |    | |   | |\\__, |\r\n");
+    outputText("  _| |_   | |   | |  / / \r\n");
+    outputText(" |_____|  |_|   |_| /_/  \r\n");
+    outputText("                          \r\n");
+    outputText("                          \r\n");
+    
     
     while (1) {
         outputText(shellContext.user);
